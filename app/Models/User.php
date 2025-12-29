@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
@@ -22,7 +23,27 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+protected function role(): Attribute
+{
+    return Attribute::make(
+        get: fn ($value) => $value, // tự động convert thành string
+        set: fn ($value) => match(strtolower($value)) {
+            'admin', '1', 1 => 'admin',
+            default => 'guest',
+        }
+    );
+}
 
+// Helper để dùng trong blade/middleware
+        public function isAdmin(): bool
+        {
+            return $this->role === 'admin';
+        }
+
+        public function isGuest(): bool
+        {
+            return $this->role === 'guest';
+        }
     /**
      * The attributes that should be hidden for serialization.
      *

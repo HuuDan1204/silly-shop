@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\CheckRole;                    // <<< THAY ĐỔI CHÍNH ĐÂY
+use App\Http\Middleware\DashboardAuth;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -12,16 +13,15 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->web(append:[
+   ->withMiddleware(function (Middleware $middleware): void {
+    $middleware->alias([
+        'auth'            => Authenticate::class,
 
-        ]);
-        $middleware->alias([
-             'auth' => Authenticate::class,
-       
-            'is_admin' => IsAdmin::class,
-        ]);
-    })
+        // ĐỔI TÊN ĐẸP + MỚI
+        'dashboard.auth'  => DashboardAuth::class,
+    ]);
+})
     ->withExceptions(function (Exceptions $exceptions): void {
         //
-    })->create();
+    })
+    ->create();

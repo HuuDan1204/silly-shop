@@ -25,7 +25,16 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+        // Nếu là admin thì vào dashboard quản trị
+        if (auth()->user()->role === 'admin') {
+            return '/dashboard';
+        }
+
+        // Còn lại (guest hoặc user thường) về trang client (trang chủ)
+        return '/';
+    }
 
     /**
      * Create a new controller instance.

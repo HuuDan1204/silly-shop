@@ -52,7 +52,7 @@
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
-                <a href="{{ route('cart.add') }}" class="btn border">
+                <a href="" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
                     <span class="badge">1</span>
                 </a>

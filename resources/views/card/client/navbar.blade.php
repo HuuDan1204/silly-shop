@@ -49,10 +49,38 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
-                        <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
-                        </div>
+                      <div class="navbar-nav ml-auto py-0">
+    @guest
+        <!-- Chưa đăng nhập -->
+        <a href="{{ route('login') }}" class="nav-item nav-link">Đăng nhập</a>
+        <a href="{{ route('register') }}" class="nav-item nav-link">Đăng ký</a>
+    @else
+        <!-- Đã đăng nhập -->
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <!-- Icon người dùng (Font Awesome) -->
+                <i class="fas fa-user-circle me-2" style="font-size: 1.6rem;"></i>
+                <!-- Tên người dùng -->
+                {{ Auth::user()->name ?? 'Người dùng' }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <!-- Có thể thêm các mục khác nếu cần -->
+                <li><a class="dropdown-item" href="#">Hồ sơ cá nhân</a></li>
+                <li><a class="dropdown-item" href="#">Cài đặt</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <!-- Nút Đăng xuất -->
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="dropdown-item text-danger fw-bold">
+                            <i class="fas fa-sign-out-alt me-2"></i> Đăng xuất
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    @endguest
+</div>
                     </div>
                 </nav>
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
