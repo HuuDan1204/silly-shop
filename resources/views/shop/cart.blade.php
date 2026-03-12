@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row justify-content-center">
 <div class="col-lg-9">
-                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                {{-- <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
                         <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
                     </a>
@@ -18,7 +18,7 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                                    <a href="{{ route('cart.index') }}" class="dropdown-item"> Cart</a>
                                     <a href="checkout.html" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
                             <a href="" class="nav-item nav-link">Register</a>
                         </div>
                     </div>
-                </nav>
+                </nav> --}}
             </div>
         </div>
     </div>
