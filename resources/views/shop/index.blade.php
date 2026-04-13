@@ -62,6 +62,19 @@
 
     <!-- JavaScript Libraries -->
     @include('card.client.script')
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @if(session('success'))
+<script>
+    toastr.success("{{ session('success') }}");
+</script>
+@endif
+
+@if(session('error'))
+<script>
+    toastr.error("{{ session('error') }}");
+</script>
+@endif
 </body>
 
 </html>

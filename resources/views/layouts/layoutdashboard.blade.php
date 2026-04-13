@@ -3,7 +3,7 @@
 <html lang="en">
 
 @include('card.dashboard.head')
-
+<script src="https://cdn.jsdelivr.net/npm/just-validate@4.3.0/dist/just-validate.production.min.js"></script>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -128,6 +128,7 @@
 
     <!-- Bootstrap core JavaScript-->
    @include('card.dashboard.js')
+   @yield('js-content')
 </body>
 
 </html>

@@ -2,55 +2,27 @@
 
 namespace App\Models\Admin;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Admin\ProductVariant;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
-        'category_id',
-        'name',
-        'slug',
-        'description',
-        'image',
-        'price',
-        'stock',
-        'status',
+        'name', 'slug', 'description','image_url', 'category_id',
+        // thêm các field khác nếu có
     ];
 
-    protected $casts = [
-        'status' => 'boolean',
-        'price'  => 'decimal:2',
-        'stock'  => 'integer',
-    ];
-
-    protected static function booted()
-    {
-        static::creating(function ($product) {
-            $product->slug = Str::slug($product->name);
-        });
-
-        static::updating(function ($product) {
-            if ($product->isDirty('name')) {
-                $product->slug = Str::slug($product->name);
-            }
-        });
-    }
-
-    // Quan hệ với danh mục
     public function category()
     {
-        return $this->belongsTo(\App\Models\Admin\Category::class);
+        return $this->belongsTo(Category::class,'category_id');
     }
 
-    // Accessor ảnh
-    public function getImageUrlAttribute()
+    public function variants()
     {
-        return $this->image
-            ? asset('storage/' . $this->image)
-            : 'https://via.placeholder.com/150?text=No+Image';
+        return $this->hasMany(ProductVariant::class,'product_id');
     }
+  
 }

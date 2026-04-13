@@ -38,21 +38,10 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
 
-                            <small class="form-text text-muted">
-                                Slug sẽ tự động tạo từ tên danh mục.
-                            </small>
                         </div>
 
 
-                        <!-- Slug -->
-                        <div class="form-group mb-4">
-                            <label class="font-weight-bold">Slug</label>
-
-                            <input type="text"
-                                   class="form-control bg-light"
-                                   value="{{ $category->slug }}"
-                                   readonly>
-                        </div>
+                      
 
 
                         <!-- Ảnh hiện tại -->

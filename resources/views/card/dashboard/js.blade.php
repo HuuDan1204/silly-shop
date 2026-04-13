@@ -1,5 +1,6 @@
  <script src="{{ asset('assets-a/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets-a/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('assets-a/vendor/jquery-easing/jquery.easing.min.js') }}"></script>

@@ -41,7 +41,6 @@
                             <th>ID</th>
                             <th>Ảnh</th>
                             <th>Tên danh mục</th>
-                            <th>Slug</th>
                             <th>Ngày tạo</th>
                             <th>Hành động</th>
                         </tr>
@@ -66,7 +65,7 @@
 
                             <td>{{ $category->name }}</td>
 
-                            <td>{{ $category->slug }}</td>
+                            
 
                             <td>
                                 {{ $category->created_at ? $category->created_at->format('d/m/Y H:i') : 'N/A' }}

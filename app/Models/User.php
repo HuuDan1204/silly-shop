@@ -3,6 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Admin\Order;
+use App\Models\Admin\Voucher;
+use App\Models\Client\Address;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,11 +22,23 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
+     protected $fillable = [
         'name',
         'email',
         'password',
+        'default_address',
+        'default_phone',
+        'avatar',
+        'total_spent',
+        'point',
+        'rank',
+        'status',
+        'province_code',
+        'ward_code',
+        // thêm các trường khác nếu sau này cần
     ];
+
+    
 protected function role(): Attribute
 {
     return Attribute::make(
@@ -66,4 +82,22 @@ protected function role(): Attribute
             'password' => 'hashed',
         ];
     }
+
+    public function addressBooks()
+{
+    return $this->hasMany(Address::class);
+}
+
+public function orders()
+{
+    return $this->hasMany(Order::class);
+}
+
+// Nếu dùng bảng trung gian vouchers_users
+public function vouchers()
+{
+    return $this->belongsToMany(Voucher::class, 'vouchers_users')
+                ->withPivot('used_at')
+                ->withTimestamps();
+}
 }
